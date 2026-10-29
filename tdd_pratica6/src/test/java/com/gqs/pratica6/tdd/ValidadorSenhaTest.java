@@ -68,6 +68,7 @@ class ValidadorSenhaTest {
         ValidadorSenha.ResultadoValidacao resultado = validador.validar("Abcdef1!");
         assertFalse(resultado.getErros().contains("A senha deve conter pelo menos um caractere especial"));
     }
+
     @Test
     void deveRetornarTodosOsErrosQuandoSenhaNaoAtenderAosRequisitos() {
         ValidadorSenha validador = new ValidadorSenha();
@@ -78,5 +79,13 @@ class ValidadorSenhaTest {
         assertTrue(resultado.getErros().contains("A senha deve conter pelo menos 2 dígitos"));
         assertTrue(resultado.getErros().contains("A senha deve conter pelo menos uma letra maiuscula"));
         assertTrue(resultado.getErros().contains("A senha deve conter pelo menos um caractere especial"));
+    }
+
+    @Test
+    void deveConsiderarValidaSenhaQueAtendeTodosOsRequisitos() {
+        ValidadorSenha validador = new ValidadorSenha();
+        ValidadorSenha.ResultadoValidacao resultado = validador.validar("Abcdef12!");
+        assertTrue(resultado.isValida());
+        assertTrue(resultado.getErros().isEmpty());
     }
 }
