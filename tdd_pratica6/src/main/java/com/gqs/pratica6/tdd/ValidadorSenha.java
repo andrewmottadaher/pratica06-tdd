@@ -40,6 +40,11 @@ public class ValidadorSenha {
         if (!possuiMaiuscula) {
             erros.add("A senha deve conter pelo menos uma letra maiuscula");
         }
+        boolean possuiCaractereEspecial = senha.chars()
+                .anyMatch(c -> !Character.isLetterOrDigit(c));
+        if (!possuiCaractereEspecial) {
+            erros.add("A senha deve conter pelo menos um caractere especial");
+        }
         return new ResultadoValidacao(erros.isEmpty(), erros);
     }
 }
