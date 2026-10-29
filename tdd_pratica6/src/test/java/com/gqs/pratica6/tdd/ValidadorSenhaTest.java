@@ -30,4 +30,12 @@ class ValidadorSenhaTest {
         assertTrue(resultado.getErros().contains(
                 "A senha deve conter pelo menos 2 dígitos"));
     }
+
+    @Test
+    void naoDeveRetornarErroQuandoSenhaTiverDoisDigitos() {
+        ValidadorSenha validador = new ValidadorSenha();
+        ValidadorSenha.ResultadoValidacao resultado = validador.validar("Abcdef12");
+        assertFalse(resultado.getErros().contains(
+                "A senha deve conter pelo menos 2 dígitos"));
+    }
 }
