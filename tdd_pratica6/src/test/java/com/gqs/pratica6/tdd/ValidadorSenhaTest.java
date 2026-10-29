@@ -38,4 +38,13 @@ class ValidadorSenhaTest {
         assertFalse(resultado.getErros().contains(
                 "A senha deve conter pelo menos 2 dígitos"));
     }
+
+    @Test
+    void deveRetornarErroQuandoSenhaNaoTiverLetraMaiuscula() {
+        ValidadorSenha validador = new ValidadorSenha();
+        ValidadorSenha.ResultadoValidacao resultado = validador.validar("abcdef12");
+        assertFalse(resultado.isValida());
+        assertTrue(resultado.getErros().contains(
+                "A senha deve conter pelo menos uma letra maiuscula"));
+    }
 }
