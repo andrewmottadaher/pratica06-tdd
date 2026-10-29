@@ -55,4 +55,13 @@ class ValidadorSenhaTest {
         assertFalse(resultado.getErros().contains(
                 "A senha deve conter pelo menos uma letra maiuscula"));
     }
+
+    @Test
+    void deveRetornarErroQuandoSenhaNaoTiverCaractereEspecial() {
+        ValidadorSenha validador = new ValidadorSenha();
+        ValidadorSenha.ResultadoValidacao resultado = validador.validar("Abcdef12");
+        assertFalse(resultado.isValida());
+        assertTrue(resultado.getErros().contains(
+                "A senha deve conter pelo menos um caractere especial"));
+    }
 }
