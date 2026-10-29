@@ -8,11 +8,17 @@ class ValidadorSenhaTest {
     @Test
     void deveRetornarErroQuandoSenhaTiverMenosDeOitoCaracteres() {
         ValidadorSenha validador = new ValidadorSenha();
-        ValidadorSenha.ResultadoValidacao resultado =
-                validador.validar("Abc123!");
+        ValidadorSenha.ResultadoValidacao resultado = validador.validar("Abc123!");
         assertFalse(resultado.isValida());
         assertTrue(resultado.getErros().contains(
-                "A senha deve ter pelo menos 8 caracteres"
-        ));
+                "A senha deve ter pelo menos 8 caracteres"));
+    }
+
+    @Test
+    void naoDeveRetornarErroQuandoSenhaTiverOitoCaracteres() {
+        ValidadorSenha validador = new ValidadorSenha();
+        ValidadorSenha.ResultadoValidacao resultado = validador.validar("Abc123!x");
+        assertFalse(resultado.getErros().contains(
+                "A senha deve ter pelo menos 8 caracteres"));
     }
 }
