@@ -64,4 +64,12 @@ class ValidadorSenhaTest {
         assertTrue(resultado.getErros().contains(
                 "A senha deve conter pelo menos um caractere especial"));
     }
+
+    @Test
+    void naoDeveRetornarErroQuandoSenhaTiverCaractereEspecial() {
+        ValidadorSenha validador = new ValidadorSenha();
+        ValidadorSenha.ResultadoValidacao resultado = validador.validar("Abcdef1!");
+        assertFalse(resultado.getErros().contains(
+                "A senha deve conter pelo menos um caractere especial"));
+    }
 }
